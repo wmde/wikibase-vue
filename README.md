@@ -33,7 +33,12 @@ mediawiki stack)
 
 `docker build -t vue-server .`
 
+If you run `npm install` from the host:
 `docker run -p 3000:3000 -v $(pwd):/usr/src/app vue-server`
+
+Otherwise (e.g. if you don't have npm installed):
+`docker run -p 3000:3000 -v $(pwd):/usr/src/app -v /usr/src/app/node_modules vue-server`
+This ensures that the `node_modules` directory does not get overridden by the mounted volume.
 
 Example page:
 http://localhost:3000/lemma-widget
